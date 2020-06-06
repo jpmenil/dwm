@@ -10,10 +10,9 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[] = {
-                              "Source Code Pro for Powerline:pixelsize=25:antialias=true:autohint=true",
-                              "fontawesome:size=18:antialias=true:autohint=true"
+    "DejaVu Sans Mono:pixelsize=25:antialias=true:autohint=true",
 };
-static const char dmenufont[]       = "xos4 Terminus:size=9";
+static const char dmenufont[]       = "monospace:size=9";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -36,7 +35,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "neomutt",     NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Firefox",         NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Firefox",     NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
