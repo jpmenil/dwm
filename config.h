@@ -1,8 +1,17 @@
 /* See LICENSE file for copyright and license details. */
 
 /* key definitions */
-#define XF86KbdBrightnessDown    0x1008ff06
-#define XF86KbdBrightnessUp      0x1008ff05
+/* from <X11/XF86keysym.h> */
+#define XF86XK_MonBrightnessUp      0x1008FF02
+#define XF86XK_MonBrightnessDown    0x1008FF03
+#define XF86XK_KbdBrightnessDown    0x1008ff06
+#define XF86XK_KbdBrightnessUp      0x1008ff05
+#define XF86XK_AudioLowerVolume     0x1008FF11
+#define XF86XK_AudioMute            0x1008FF12
+#define XF86XK_AudioRaiseVolume     0x1008FF13
+#define XF86XK_AudioPlay            0x1008FF14
+#define XF86XK_AudioPrev            0x1008FF16
+#define XF86XK_AudioNext            0x1008FF17
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -68,6 +77,12 @@ static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *lock[]     = { "slock", "cmus-remote", "-u", NULL };
 static const char *kbdup[]    = { "sudo", "/home/jenfi/bin/keyboard-backlight", "up", NULL };
 static const char *kbddown[]  = { "sudo", "/home/jenfi/bin/keyboard-backlight", "down", NULL };
+static const char *kbdplay[]  = { "cmus-remote", "-u", NULL };
+static const char *mon_up[]   = { "sudo", "/home/jenfi/bin/screen-backlight", "up", NULL };
+static const char *mon_down[] = { "sudo", "/home/jenfi/bin/screen-backlight", "down", NULL };
+static const char *vol_down[] = { "amixer", "-q", "sset", "Master", "5%-", "unmute", NULL };
+static const char *vol_mute[] = { "amixer", "set", "Master", "toggle", NULL };
+static const char *vol_up[]   = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -99,8 +114,14 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,      spawn,          {.v = lock } },
         /* MBP Mappings */
-        { 0,                            XF86KbdBrightnessUp, spawn, {.v = kbdup } },
-        { 0,                            XF86KbdBrightnessDown, spawn, {.v = kbddown } },
+        { 0,                            XF86XK_KbdBrightnessUp,    spawn, {.v = kbdup } },
+        { 0,                            XF86XK_KbdBrightnessDown,  spawn, {.v = kbddown } },
+        { 0,                            XF86XK_AudioPlay,          spawn, {.v = kbdplay } },
+        { 0,                            XF86XK_AudioLowerVolume,   spawn, {.v = vol_down } },
+        { 0,                            XF86XK_AudioMute,          spawn, {.v = vol_mute } },
+        { 0,                            XF86XK_AudioRaiseVolume,   spawn, {.v = vol_up } },
+        { 0,                            XF86XK_MonBrightnessDown,  spawn, {.v = mon_down } },
+        { 0,                            XF86XK_MonBrightnessUp,    spawn, {.v = mon_up } },
         /* Forever alone, quits. */
         { MODKEY|ShiftMask,             XK_q,      quit,           {0} },
         /* Tags */
