@@ -21,7 +21,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[] = {
     "DejaVu Sans Mono:pixelsize=25:antialias=true:autohint=true",
 };
-static const char dmenufont[]       = "monospace:size=9";
+static const char dmenufont[]       = "DejaVu Sans Mono:pixelsize=25:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -77,9 +77,11 @@ static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *lock[]     = { "slock", "cmus-remote", "-u", NULL };
 static const char *kbdup[]    = { "sudo", "/home/jenfi/bin/keyboard-backlight", "up", NULL };
 static const char *kbddown[]  = { "sudo", "/home/jenfi/bin/keyboard-backlight", "down", NULL };
-static const char *kbdplay[]  = { "cmus-remote", "-u", NULL };
 static const char *mon_up[]   = { "sudo", "/home/jenfi/bin/screen-backlight", "up", NULL };
 static const char *mon_down[] = { "sudo", "/home/jenfi/bin/screen-backlight", "down", NULL };
+static const char *next[]     = { "cmus-remote", "-n", NULL };
+static const char *play[]     = { "cmus-remote", "-u", NULL };
+static const char *previous[] = { "cmus-remote", "-r", NULL };
 static const char *vol_down[] = { "amixer", "-q", "sset", "Master", "5%-", "unmute", NULL };
 static const char *vol_mute[] = { "amixer", "set", "Master", "toggle", NULL };
 static const char *vol_up[]   = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
@@ -116,7 +118,9 @@ static Key keys[] = {
         /* MBP Mappings */
         { 0,                            XF86XK_KbdBrightnessUp,    spawn, {.v = kbdup } },
         { 0,                            XF86XK_KbdBrightnessDown,  spawn, {.v = kbddown } },
-        { 0,                            XF86XK_AudioPlay,          spawn, {.v = kbdplay } },
+        { 0,                            XF86XK_AudioNext,          spawn, {.v = next } },
+        { 0,                            XF86XK_AudioPlay,          spawn, {.v = play } },
+        { 0,                            XF86XK_AudioPrev,          spawn, {.v = previous } },
         { 0,                            XF86XK_AudioLowerVolume,   spawn, {.v = vol_down } },
         { 0,                            XF86XK_AudioMute,          spawn, {.v = vol_mute } },
         { 0,                            XF86XK_AudioRaiseVolume,   spawn, {.v = vol_up } },
