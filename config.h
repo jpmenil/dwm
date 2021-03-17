@@ -42,9 +42,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "neomutt",     NULL,       NULL,       1 << 7,       0,           -1 },
-	{ "Firefox",     NULL,       NULL,       1 << 8,       0,           -1 },
+        /* class      instance    title       tags mask     isfloating   monitor */
+        { "Chromium", NULL,       NULL,       1 << 6,       0,           -1 },
+	{ mutt,       NULL,       NULL,       1 << 7,       0,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -111,10 +112,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_comma,  focusmon,       {.i = +1 } },
+	{ MODKEY,                       XK_period, focusmon,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = -1 } },
 	{ ControlMask|ShiftMask,        XK_space,  spawn,          {.v = herbe } },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,      spawn,          {.v = lock } },
         /* MBP Mappings */
