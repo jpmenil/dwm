@@ -72,27 +72,31 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2]       = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *herbe[]    = { "pkill", "-SIGUSR1", "herbe" };
-static const char *kbdup[]    = { "sudo", "/home/jenfi/bin/keyboard-backlight", "up", NULL };
-static const char *kbddown[]  = { "sudo", "/home/jenfi/bin/keyboard-backlight", "down", NULL };
-static const char *lock[]     = { "slock", "cmus-remote", "-s", NULL };
-static const char *mon_up[]   = { "sudo", "/home/jenfi/bin/screen-backlight", "up", NULL };
-static const char *mon_down[] = { "sudo", "/home/jenfi/bin/screen-backlight", "down", NULL };
-static const char *next[]     = { "cmus-remote", "-n", NULL };
-static const char *play[]     = { "cmus-remote", "-u", NULL };
-static const char *previous[] = { "cmus-remote", "-r", NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
-static const char *vol_down[] = { "amixer", "-q", "sset", "Master", "5%-", "unmute", NULL };
-static const char *vol_mute[] = { "amixer", "set", "Master", "toggle", NULL };
-static const char *vol_up[]   = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
+static char dmenumon[2]         = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[]   = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *herbe[]      = { "pkill", "-SIGUSR1", "herbe" };
+static const char *kbdup[]      = { "sudo", "/home/jenfi/bin/keyboard-backlight", "up", NULL };
+static const char *kbddown[]    = { "sudo", "/home/jenfi/bin/keyboard-backlight", "down", NULL };
+static const char *lock[]       = { "slock", "cmus-remote", "-s", NULL };
+static const char *mon_up[]     = { "sudo", "/home/jenfi/bin/screen-backlight", "up", NULL };
+static const char *mon_down[]   = { "sudo", "/home/jenfi/bin/screen-backlight", "down", NULL };
+static const char *next[]       = { "cmus-remote", "-n", NULL };
+static const char *play[]       = { "cmus-remote", "-u", NULL };
+static const char *previous[]   = { "cmus-remote", "-r", NULL };
+static const char *pass[]       = { "pass", "-c", "jp/password", NULL};
+static const char *passphrase[] = { "pass", "-c", "gpg/passphrase", NULL};
+static const char *termcmd[]    = { "st", "-e", "tmux", NULL };
+static const char *vol_down[]   = { "amixer", "-q", "sset", "Master", "5%-", "unmute", NULL };
+static const char *vol_mute[]   = { "amixer", "set", "Master", "toggle", NULL };
+static const char *vol_up[]     = { "amixer", "-q", "sset", "Master", "5%+", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
         /* Commands */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+        { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+        { MODKEY|ShiftMask,             XK_k,      spawn,          {.v = pass } },
+        { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = passphrase } },
         /* General */
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
